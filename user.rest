@@ -1,0 +1,50 @@
+GET http://localhost:8080/products
+
+###
+
+POST http://localhost:8080/auth/signin
+Content-Type: application/json
+
+{
+    "username": "Alex",
+    "password": "password"
+}
+
+###
+POST http://localhost:8080/auth/signup
+Content-Type: application/json
+
+{
+    "username": "Alex",
+    "email": "alex@gmail.com",
+    "password": "password"
+}
+
+###
+POST http://localhost:8080/products
+Content-Type: application/json
+x-access-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMjg5YTU2MzUzZDM3OGFkYjYzMDk0MSIsImlhdCI6MTY0NjkwOTQ2NiwiZXhwIjoxNjQ2OTk1ODY2fQ.H6dzdJ2V_dqyzcE4zG5mr3wNslpqWhF0Lh3AH_vGc-M
+
+{
+    "title": "salaah top",
+    "category": "tops",
+    "img": "tops",
+    "size": {"l": 22, "w": 55},
+    "price": 5,
+    "description": "amazing",
+    "qty": 20
+}
+
+###
+DELETE http://localhost:8080/products/6228b8b478004c8a87998a5e
+Content-Type: application/json
+x-access-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMjg5YTU2MzUzZDM3OGFkYjYzMDk0MSIsImlhdCI6MTY0NjkwMDg1MCwiZXhwIjoxNjQ2OTg3MjUwfQ.7RcM4Vbf6e8Ff_gClYKO48TX6iHXMwZ43pCZhWFjYfY
+
+###
+PATCH  http://localhost:8080/products/6229d82eeda4cf8db56f1392
+Content-Type: application/json
+x-access-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMjg5YTU2MzUzZDM3OGFkYjYzMDk0MSIsImlhdCI6MTY0NjkxMjIwOSwiZXhwIjoxNjQ2OTk4NjA5fQ.YGVqyWPd0nS7ImWdpLWaOUrbr3uSwg8NUHpNsrpYqUc
+
+{
+    "qty": 200
+}
