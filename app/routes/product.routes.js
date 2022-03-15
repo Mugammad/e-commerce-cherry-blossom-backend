@@ -10,7 +10,7 @@ module.exports = function(app) {
     next();
   });
   app.get("/products", controller.getAll);
-  app.post("/products", [authJwt.verifyToken, authJwt.isAdmin], controller.addProduct, finders.findUser)
+  app.post("/products", [authJwt.verifyToken, authJwt.isAdmin, finders.findUser], controller.addProduct)
   app.delete("/products/:id", [authJwt.verifyToken, authJwt.isAdmin, finders.findProduct, finders.findUser], controller.removeProduct)
   app.patch("/products/:id", [authJwt.verifyToken, authJwt.isAdmin, finders.findProduct, finders.findUser], controller.updateProduct)
 };

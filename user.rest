@@ -2,11 +2,21 @@ GET http://localhost:8080/products
 
 ###
 
+GET http://localhost:8080/users
+x-access-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMjg5YTU2MzUzZDM3OGFkYjYzMDk0MSIsImlhdCI6MTY0NzMyNzU4NywiZXhwIjoxNjQ3NDEzOTg3fQ.I9jw3sAG2vHrOJ0Z6OqbtwXQdRjdH4Ch89Mc66hxF6o
+
+###
+
+GET http://localhost:8080/cart
+x-access-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMmYwZmRhNGNhOTczOTRhNzZmMTQ2MCIsImNhcnQiOnsiX2lkIjoiNjIyZjBmZGE0Y2E5NzM5NGE3NmYxNDYxIiwidXNlcklkIjoiNjIyZjBmZGE0Y2E5NzM5NGE3NmYxNDYwIiwicXVhbnRpdHkiOjAsInRvdGFsIjoxMDAsInByb2R1Y3RzIjpbXSwiX192Ijo0fSwiaWF0IjoxNjQ3MzM3NDYwLCJleHAiOjE2NDc0MjM4NjB9.fQVgJT78CvIM3Obcxfn2EpvERCmEW7U6uu_7JHizm9k
+
+###
+
 POST http://localhost:8080/auth/signin
 Content-Type: application/json
 
 {
-    "username": "Alex",
+    "username": "Mugammad Breda",
     "password": "password"
 }
 
@@ -15,8 +25,8 @@ POST http://localhost:8080/auth/signup
 Content-Type: application/json
 
 {
-    "username": "Alex",
-    "email": "alex@gmail.com",
+    "username": "Mugammad Breda",
+    "email": "bredrawings@gmail.com",
     "password": "password"
 }
 
@@ -41,10 +51,41 @@ Content-Type: application/json
 x-access-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMjg5YTU2MzUzZDM3OGFkYjYzMDk0MSIsImlhdCI6MTY0NjkwMDg1MCwiZXhwIjoxNjQ2OTg3MjUwfQ.7RcM4Vbf6e8Ff_gClYKO48TX6iHXMwZ43pCZhWFjYfY
 
 ###
+DELETE http://localhost:8080/cart
+Content-Type: application/json
+x-access-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMmYwZmRhNGNhOTczOTRhNzZmMTQ2MCIsImNhcnQiOnsiX2lkIjoiNjIyZjBmZGE0Y2E5NzM5NGE3NmYxNDYxIiwidXNlcklkIjoiNjIyZjBmZGE0Y2E5NzM5NGE3NmYxNDYwIiwicXVhbnRpdHkiOjEwLCJ0b3RhbCI6MTAwLCJwcm9kdWN0cyI6W3siaWQiOiI2MjI5ZDgyZWVkYTRjZjhkYjU2ZjEzOTIiLCJ0aXRsZSI6InNhbGFhaCB0b3AiLCJpbWciOiJ0b3BzIiwiZGVzY3JpcHRpb24iOiJhbWF6aW5nIiwic2l6ZSI6eyJsIjoyMiwidyI6NTV9LCJjYXRlZ29yeSI6InRvcHMiLCJwcmljZSI6NSwicXR5IjoxMH1dLCJfX3YiOjB9LCJpYXQiOjE2NDczMjg5MTgsImV4cCI6MTY0NzQxNTMxOH0.pUSrQoIx8PEs5IgNhr-CWnsd6qhBCFTesYFomVpWQps
+
+###
 PATCH  http://localhost:8080/products/6229d82eeda4cf8db56f1392
 Content-Type: application/json
-x-access-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMjg5YTU2MzUzZDM3OGFkYjYzMDk0MSIsImlhdCI6MTY0NjkxMjIwOSwiZXhwIjoxNjQ2OTk4NjA5fQ.YGVqyWPd0nS7ImWdpLWaOUrbr3uSwg8NUHpNsrpYqUc
+x-access-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMjg5YTU2MzUzZDM3OGFkYjYzMDk0MSIsImlhdCI6MTY0NzE5OTY1OSwiZXhwIjoxNjQ3Mjg2MDU5fQ.ZbbFYCKOINRYrFs_Zi9kSQQjruOkqwSkF3iv-88Jl1U
 
 {
     "qty": 200
+}
+
+###
+POST http://localhost:8080/cart/6229d82eeda4cf8db56f1392
+Content-Type: application/json
+x-access-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMmYwZmRhNGNhOTczOTRhNzZmMTQ2MCIsImlhdCI6MTY0NzMzNzIwMSwiZXhwIjoxNjQ3NDIzNjAxfQ.zZdI3Lp_emmjWvThJrq-GvMl3S_J_nk12MmtzzSOt3I
+
+{
+    "qty": 10
+}
+
+###
+PATCH http://localhost:8080/cart/6229d82eeda4cf8db56f1392
+x-access-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMmYwZmRhNGNhOTczOTRhNzZmMTQ2MCIsImNhcnQiOnsiX2lkIjoiNjIyZjBmZGE0Y2E5NzM5NGE3NmYxNDYxIiwidXNlcklkIjoiNjIyZjBmZGE0Y2E5NzM5NGE3NmYxNDYwIiwicXVhbnRpdHkiOjEwLCJ0b3RhbCI6MTAwLCJwcm9kdWN0cyI6W3siaWQiOiI2MjI5ZDgyZWVkYTRjZjhkYjU2ZjEzOTIiLCJ0aXRsZSI6InNhbGFhaCB0b3AiLCJpbWciOiJ0b3BzIiwiZGVzY3JpcHRpb24iOiJhbWF6aW5nIiwic2l6ZSI6eyJsIjoyMiwidyI6NTV9LCJjYXRlZ29yeSI6InRvcHMiLCJwcmljZSI6NSwicXR5IjoxMH1dLCJfX3YiOjJ9LCJpYXQiOjE2NDczMzcyNDAsImV4cCI6MTY0NzQyMzY0MH0.43ohWiWEcu_0FAaD10XIBBZ7Ei6_ak2HD3Pdxc694b4
+
+###
+DELETE http://localhost:8080/user
+x-access-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMmYwYzlmZjVjMmZlZTc3MzRiZGZmYiIsImlhdCI6MTY0NzI1MDU5NCwiZXhwIjoxNjQ3MzM2OTk0fQ.0wbdb-DJX1DogL4vJt4YgcEx8iAY3ahxdSXNNATuGpM
+
+###
+PATCH http://localhost:8080/user
+Content-Type: application/json
+x-access-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMmYwZmRhNGNhOTczOTRhNzZmMTQ2MCIsImlhdCI6MTY0NzMyNjczNSwiZXhwIjoxNjQ3NDEzMTM1fQ.dU930P-pUMbw6lE4cLHzPrZfAstduCWR-2_C2EoDbeo
+
+{
+    "username": "Mugammad Breda"
 }
