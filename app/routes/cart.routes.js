@@ -13,4 +13,5 @@ module.exports = function(app) {
   app.post("/cart/:id", [authJwt.verifyToken, finders.findCart, finders.findProduct, finders.findUser], controller.add)
   app.delete("/cart", [authJwt.verifyToken, finders.findCart, finders.findUser], controller.emptyCart)
   app.patch("/cart/:id", [authJwt.verifyToken, finders.findCart, finders.findProduct, finders.findUser], controller.removeCartItem)
+  app.put("/cart/:id", [authJwt.verifyToken, finders.findCart, finders.findProduct, finders.findUser], controller.changeQty)
 };

@@ -93,7 +93,34 @@ async function initial() {
 
 // simple route
 app.get("/", (req, res) => {
-  res.json({ message: "Welcome to bezkoder application." });
+  res.json({
+    message: "Welcome to Mugammad's E-commerce API.",
+    routes: {
+      auth: {
+        signIn: "POST /auth/signin",
+        signUp: "POST /auth/signup"
+      },
+      products: {
+        getProducts: "GET /products",
+        addProduct: "POST /products",
+        deleteProduct: "DELETE /products/:id",
+        editProduct: "PATCH /products/:id"
+      },
+      users: {
+        getUsers: "GET /users",
+        getUser: "GET /user",
+        deleteUser: "DELETE /user",
+        editUser: "PATCH /user"
+      },
+      cart: {
+        getCart: "GET /cart",
+        addProductToCart: "POST /cart/:id",
+        deleteProductFromCart: "PATCH /cart/:id",
+        clearCart: "DELETE /cart",
+        changeCartItemQty: "PUT /cart/:id",
+      }
+    }
+  });
 });
 
 require('./app/routes/auth.routes')(app);

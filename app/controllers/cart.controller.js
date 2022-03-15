@@ -1,4 +1,6 @@
 const jwt = require('jsonwebtoken')
+const emailSend = require('../config/email.config')
+const { cart } = require('../models')
 
 exports.getCart = async (req, res) => {
     let cart = res.cart
@@ -72,10 +74,36 @@ exports.add = async (req, res) => {
 }
 
 exports.emptyCart = async (req, res) => {
+    let { email, username } = res.user
+    let remittance = 0
+    res.cart.products.forEach(item => {
+        remittance = item.qty*item.price
+    });
+      
+    const mailOptions = {
+      from: process.env.EMAIL,
+      to: email,
+      subject: 'Items purchased',
+      text: `
+Hi ${username}
+
+There was a transction made on your account.
+Status: success
+Remittance: R ${remittance}
+
+      `
+    };
     try {
         res.cart.products = []
         res.cart.quantity = 0
         await res.cart.save()
+      
+        emailSend.transporter.sendMail(mailOptions, function(error){
+          if (error) {
+            console.log(error);
+            res.status(400).send({msg: "Email not sent"})
+          }
+        });
         let token = jwt.sign({ id: res.user._id }, process.env.SECRET, {
             expiresIn: 86400 // 24 hours
           });
@@ -104,7 +132,7 @@ exports.removeCartItem = async (req, res) => {
         })
         res.cart = cart
         await product.save()
-        const updatedCart = await res.cart.save()
+        await res.cart.save()
         let token = jwt.sign({ id: res.user._id, cart }, process.env.SECRET, {
             expiresIn: 86400 // 24 hours
           });
@@ -112,9 +140,37 @@ exports.removeCartItem = async (req, res) => {
     } catch (error) {
         res.status(500).json({message: error.message})
     }
-    
 }
 
 exports.changeQty = async (req, res) => {
-    
+    let cart = res.cart;
+    if(req.userInfo.cart){
+        cart.products = req.userInfo.cart.products
+    }
+    let product = res.product
+    let qtyDifference = 0
+    try {
+        cart.products.forEach(item => {
+            if(item.id == product._id.valueOf()){
+                qtyDifference = req.body.qty - item.qty
+                //change quantity
+                item.qty = req.body.qty
+                res.cart.products = cart.products
+                //affects product qty and cart quantity
+                console.log(qtyDifference);
+                product.qty -= qtyDifference
+                cart.quantity += qtyDifference
+            }
+        })
+
+        res.cart = cart
+        await res.cart.save()
+        await product.save()
+        let token = jwt.sign({ id: res.user._id, cart }, process.env.SECRET, {
+            expiresIn: 86400 // 24 hours
+          });
+        res.status(200).json({message: "Product quantity changed", accessToken: token})
+    } catch (error) {
+        res.status(500).json({message: error.message})
+    }
 }
