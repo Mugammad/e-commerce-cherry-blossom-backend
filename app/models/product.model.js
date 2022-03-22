@@ -11,7 +11,7 @@ const Product = mongoose.model(
         required: true
     },
     size: {
-        type: Object,
+        type: String,
         required: true
     },
     img: {
