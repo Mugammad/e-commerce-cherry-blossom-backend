@@ -35,6 +35,7 @@ const Product = mongoose.model(
         type: Number,
         required: true
     },
-  })
+  },
+  {timestamps: true})
 );
 module.exports = Product;
