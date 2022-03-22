@@ -22,6 +22,11 @@ const Product = mongoose.model(
         type: Number,
         required: true
     },
+    salePrice: {
+        type: Number,
+        required: false,
+        default: null
+    },
     description: {
         type: String,
         required: true

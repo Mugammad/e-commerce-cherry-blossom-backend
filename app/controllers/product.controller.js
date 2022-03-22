@@ -46,7 +46,7 @@ exports.removeProduct = async (req, res) => {
 }
 
 exports.updateProduct = async (req, res) => {
-    let { title, category, description, img, price, qty, size} = req.body
+    let { title, category, description, img, price, qty, size, salePrice} = req.body
     try {
         if(title) {
             res.product.title = title
@@ -68,6 +68,9 @@ exports.updateProduct = async (req, res) => {
         }
         if(size) {
             res.product.size = size
+        }
+        if(salePrice) {
+            res.product.salePrice = salePrice
         }
         
         let token = jwt.sign({ id: res.user._id }, process.env.SECRET, {
