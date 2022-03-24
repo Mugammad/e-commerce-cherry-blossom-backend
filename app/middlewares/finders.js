@@ -23,7 +23,7 @@ exports.findUser = async (req, res, next) => {
         _id: req.userId
       }).exec((err, user) => {
         if (err) {
-            res.status(500).send({ message: err });
+            res.status(500).send({ message: err }); 
             return;
         }
         if(user){
