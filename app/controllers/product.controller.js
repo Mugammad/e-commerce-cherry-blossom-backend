@@ -69,6 +69,9 @@ exports.updateProduct = async (req, res) => {
         if(size) {
             res.product.size = size
         }
+        if(salePrice == '' || !salePrice){
+            res.product.salePrice == null
+        }
         if(salePrice) {
             res.product.salePrice = salePrice
         }
