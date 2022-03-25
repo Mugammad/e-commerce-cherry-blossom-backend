@@ -44,6 +44,7 @@ exports.add = async (req, res) => {
                 size: product.size,
                 category: product.category,
                 price: product.price,
+                salePrice: product.salePrice
             }
             console.log(cart.products);
             cart.products.forEach(item => {
