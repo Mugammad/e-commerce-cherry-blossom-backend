@@ -77,8 +77,14 @@ exports.add = async (req, res) => {
 exports.emptyCart = async (req, res) => {
     let { email, username } = res.user
     let remittance = 0
+    let price
     res.cart.products.forEach(item => {
-        remittance = item.qty*item.price
+        if(item.salePrice){
+            price = item.salePrice
+        }else{
+            price = item.price
+        }
+        remittance += item.qty*price
     });
       
     const mailOptions = {
