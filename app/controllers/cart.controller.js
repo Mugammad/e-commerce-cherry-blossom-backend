@@ -105,12 +105,12 @@ Remittance: R ${remittance}
         res.cart.quantity = 0
         await res.cart.save()
       
-        emailSend.transporter.sendMail(mailOptions, function(error){
-          if (error) {
-            console.log(error);
-            res.status(400).send({msg: "Email not sent"})
-          }
-        });
+        // emailSend.transporter.sendMail(mailOptions, function(error){
+        //   if (error) {
+        //     console.log(error);
+        //     res.status(400).send({msg: "Email not sent"})
+        //   }
+        // });
         let token = jwt.sign({ id: res.user._id }, process.env.SECRET, {
             expiresIn: 86400 // 24 hours
           });
