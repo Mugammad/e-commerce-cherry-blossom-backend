@@ -41,12 +41,12 @@ Your account has been successfully removed. Thanks for shopping!
     await user.remove()
     await cart.remove()
       
-    emailSend.transporter.sendMail(mailOptions, function(error){
-      if (error) {
-        console.log(error);
-        res.status(400).send({msg: "Email not sent"})
-      }
-    });
+    // emailSend.transporter.sendMail(mailOptions, function(error){
+    //   if (error) {
+    //     console.log(error);
+    //     res.status(400).send({msg: "Email not sent"})
+    //   }
+    // });
     res.status(201).json({message: "User removed!"})
   } catch (error) {
     res.status(500).json({message: error.message})
@@ -79,12 +79,12 @@ You Account has been edited.
           res.user.password = bcrypt.hashSync(req.body.password, salt)
       }
       
-      emailSend.transporter.sendMail(mailOptions, function(error){
-        if (error) {
-          console.log(error);
-          res.status(400).send({msg: "Email not sent"})
-        }
-      });
+      // emailSend.transporter.sendMail(mailOptions, function(error){
+      //   if (error) {
+      //     console.log(error);
+      //     res.status(400).send({msg: "Email not sent"})
+      //   }
+      // });
       
       let token = jwt.sign({ id: res.user._id }, process.env.SECRET, {
         expiresIn: 86400 // 24 hours
